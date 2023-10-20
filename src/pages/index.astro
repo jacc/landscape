@@ -3,9 +3,13 @@ export const prerender = true;
 
 import Card from "../components/Card.astro";
 import Layout from "../layouts/Layout.astro";
+import type { AlbumData, StreamingData } from "../types/api";
 
-const response = await fetch("https://jacklink.fly.dev/music/albums");
-const data = await response.json();
+const albums = await fetch("https://jacklink.fly.dev/music/albums");
+const albumsData = (await albums.json()) as AlbumData;
+
+const streaming = await fetch("https://jacklink.fly.dev/music/streaming");
+const streamingData = (await streaming.json()) as StreamingData;
 ---
 
 <Layout title="Jack LaFond" subtitle="20 year old intern at Retroooo">
@@ -21,9 +25,9 @@ const data = await response.json();
       </Card>
     </div>
     <div class="col-span-4 md:col-span-1">
-      <Card title="Music">
+      <Card title="Music" titleIcon="tabler:music-heart">
         {
-          data.albums.slice(0, 3).map((album) => {
+          albumsData.albums.slice(0, 3).map((album) => {
             return (
               <div class="flex">
                 <img src={album.image} class="h-6 rounded-lg" /> {album.album}
@@ -34,9 +38,9 @@ const data = await response.json();
       </Card>
     </div>
     <div class="col-span-4 md:col-span-1">
-      <Card title="Stats">
+      <Card title="Stats" titleIcon="tabler:chart-arcs">
         {
-          data.albums.slice(0, 3).map((album) => {
+          albumsData.albums.slice(0, 3).map((album) => {
             return (
               <div class="flex">
                 <img src={album.image} class="h-6 rounded-lg" /> {album.album}
