@@ -1,0 +1,74 @@
+---
+export const prerender = true;
+
+import Card from "../components/Card.astro";
+import Layout from "../layouts/Layout.astro";
+
+const response = await fetch("https://jacklink.fly.dev/music/albums");
+const data = await response.json();
+---
+
+<Layout title="Jack LaFond" subtitle="20 year old intern at Retroooo">
+  <div class="mt-6 grid grid-cols-4 gap-4 md:gap-8">
+    <div class="col-span-4 md:col-span-2">
+      <Card title="Intro" titleIcon="tabler:face-id">
+        Hi there! My name is Jack LaFond, and I&apos;m a 20 year old
+        cybersecurity student / software engineer / production breaking
+        enthusiast based in Florida! When I&apos;m not being massacred by school
+        work, I often contribute to numerous open source projects, listen to
+        unhealthy amounts music, take pretty pictures on my Fujifilm X100V, and
+        climb plastic rocks.
+      </Card>
+    </div>
+    <div class="col-span-4 md:col-span-1">
+      <Card title="Music">
+        {
+          data.albums.slice(0, 3).map((album) => {
+            return (
+              <div class="flex">
+                <img src={album.image} class="h-6 rounded-lg" /> {album.album}
+              </div>
+            );
+          })
+        }
+      </Card>
+    </div>
+    <div class="col-span-4 md:col-span-1">
+      <Card title="Stats">
+        {
+          data.albums.slice(0, 3).map((album) => {
+            return (
+              <div class="flex">
+                <img src={album.image} class="h-6 rounded-lg" /> {album.album}
+              </div>
+            );
+          })
+        }
+      </Card>
+    </div>
+  </div>
+  <div class="mt-6 grid grid-cols-4 gap-4 md:gap-8">
+    <div class="col-span-4 md:col-span-2">
+      <Card title="Projects">
+        <div>prioject</div>
+        <div>prioject</div>
+        <div>prioject</div>
+        <div>prioject</div>
+        <div>prioject</div>
+      </Card>
+    </div>
+    <div class="col-span-4 md:col-span-2">
+      <Card title="Blog">
+        <div>words</div>
+        <div>words</div>
+        <div>prioject</div>
+        <div>prioject</div>
+        <div>prioject</div>
+        <div>prioject</div>
+        <div>prioject</div>
+        <div>prioject</div>
+        <div>prioject</div>
+      </Card>
+    </div>
+  </div>
+</Layout>

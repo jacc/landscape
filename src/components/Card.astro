@@ -1,0 +1,25 @@
+---
+interface Props {
+  title: string;
+  titleIcon: any;
+  subtitle?: string;
+  subtitleIcon?: any;
+}
+
+const { title, subtitle, titleIcon, subtitleIcon } = Astro.props;
+const SubtitleIcon = subtitleIcon;
+import { Icon } from "astro-iconify";
+---
+
+<div
+  class="w-full h-full p-3 dark:bg-gray-2 border dark:border-gray-5 rounded-xl"
+>
+  <div class="text-sm flex items-center justify-between gap-1 p-2 text-gray-12">
+    <div class="flex gap-1">
+      {titleIcon && <Icon name={titleIcon} size={20} />}
+      {title}
+    </div>
+    {subtitle && <div class="flex gap-1 text-gray-11">{subtitle}</div>}
+  </div>
+  <div class="w-full grow p-2 text-gray-11"><slot /></div>
+</div>
