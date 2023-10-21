@@ -1,0 +1,57 @@
+---
+import { Fragment } from "astro/jsx-runtime";
+import { Github, Instagram, Linkedin, Twitter } from "lucide-astro";
+import type { StreamingData } from "../types/api";
+import FooterActivity from "./FooterActivity.astro";
+
+const socials = [
+  {
+    name: "GitHub",
+    href: "https://github.com/jacc",
+    icon: Github,
+  },
+  {
+    name: "Twitter",
+    href: "https://twitter.com/1afond",
+    icon: Twitter,
+  },
+  {
+    name: "LinkedIn",
+    href: "https://linkedin.com/in/jacklafond",
+    icon: Linkedin,
+  },
+  {
+    name: "Instagram",
+    href: "https://instagram.com/jlaf",
+    icon: Instagram,
+  },
+];
+
+const streaming = await fetch("https://jacklink.fly.dev/music/streaming");
+const streamingData = (await streaming.json()) as StreamingData;
+
+const activity = await fetch("https://jacklink.fly.dev/fun/discord");
+const activityData = (await activity.json()) as any;
+---
+
+<footer
+  class="absolute bottom-0 w-full border-t md:flex grid justify-center md:justify-between p-4 xl:pr-[12.5rem] xl:pl-[12.5rem]"
+>
+  <div class="flex justify-center md:justify-start">
+    <FooterActivity streaming={streamingData} presence={activityData} />
+  </div>
+  <div class="flex gap-3 justify-center md:justify-end">
+    {
+      socials.map((social) => {
+        return (
+          <a
+            href={social.href}
+            class="flex gap-2 text-gray-10 hover:text-gray-12 transition-colors duration-200"
+          >
+            {social.name}
+          </a>
+        );
+      })
+    }
+  </div>
+</footer>

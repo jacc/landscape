@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
 
 interface Props {
@@ -28,7 +29,7 @@ const { title, subtitle } = Astro.props;
       <nav class="min-w-8xl mx-auto container px-4 pt-8">
         <Navigation />
       </nav>
-      <main class="mx-auto max-w-8xl container px-4 pb-40 pt-12">
+      <main class="mx-auto h-full max-w-8xl container px-4 pb-40 pt-12">
         <div class="flex items-center space-x-6">
           <div class="flex flex-col">
             <div class="font-bold text-gray-12 text-3xl font-display">
@@ -42,6 +43,7 @@ const { title, subtitle } = Astro.props;
         </div>
         <slot />
       </main>
+      <Footer />
     </div>
   </body>
 </html>

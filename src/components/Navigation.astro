@@ -1,31 +1,6 @@
 ---
 const currentPath = Astro.url.pathname;
 
-import { Github, Instagram, Linkedin, Twitter } from "lucide-astro";
-
-const socials = [
-  {
-    name: "GitHub",
-    href: "https://github.com/jacc",
-    icon: Github,
-  },
-  {
-    name: "Twitter",
-    href: "https://twitter.com/1afond",
-    icon: Twitter,
-  },
-  {
-    name: "LinkedIn",
-    href: "https://linkedin.com/in/jacklafond",
-    icon: Linkedin,
-  },
-  {
-    name: "Instagram",
-    href: "https://instagram.com/jlaf",
-    icon: Instagram,
-  },
-];
-
 const navLinks = [
   {
     name: "Jack",
@@ -59,20 +34,6 @@ const navLinks = [
             transition:animate="fade"
           >
             {link.name}
-          </a>
-        );
-      })
-    }
-  </div>
-  <div class="flex gap-3">
-    {
-      socials.map((social) => {
-        return (
-          <a
-            href={social.href}
-            class="flex items-center gap-2 text-gray-10 hover:text-gray-12 transition-colors duration-200"
-          >
-            {social.name}
           </a>
         );
       })

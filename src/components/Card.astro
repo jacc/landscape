@@ -4,9 +4,10 @@ interface Props {
   titleIcon: any;
   subtitle?: string;
   subtitleIcon?: any;
+  subtitleHref?: string;
 }
 
-const { title, subtitle, titleIcon, subtitleIcon } = Astro.props;
+const { title, subtitle, titleIcon, subtitleIcon, subtitleHref } = Astro.props;
 const SubtitleIcon = subtitleIcon;
 import { Icon } from "astro-iconify";
 ---
@@ -19,7 +20,18 @@ import { Icon } from "astro-iconify";
       {titleIcon && <Icon name={titleIcon} size={20} />}
       {title}
     </div>
-    {subtitle && <div class="flex gap-1 text-gray-11">{subtitle}</div>}
+    {
+      subtitle &&
+        (subtitleHref ? (
+          <div class="flex gap-1 text-gray-11">
+            {subtitle} {subtitleIcon && <Icon name={subtitleIcon} size={20} />}
+          </div>
+        ) : (
+          <a href={subtitleHref} class="flex gap-1 text-gray-11">
+            {subtitle} {subtitleIcon && <Icon name={subtitleIcon} size={20} />}
+          </a>
+        ))
+    }
   </div>
   <div class="w-full grow p-2 text-gray-11"><slot /></div>
 </div>

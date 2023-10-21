@@ -1,0 +1,52 @@
+---
+import Icon from "astro-iconify";
+import type { StreamingData } from "../types/api";
+interface Props {
+  streaming: StreamingData;
+  presence: any;
+}
+
+interface renderedActivity {
+  text: string;
+  color: string;
+  icon?: string;
+  class?: string;
+}
+
+const { streaming, presence } = Astro.props;
+
+const renderedActivity = {
+  text: "",
+} as renderedActivity;
+
+if (streaming.streaming) {
+  renderedActivity[
+    "text"
+  ] = `Listening to ${streaming.streaming.track} by ${streaming.streaming.artist} `;
+  renderedActivity["icon"] = "tabler:disc";
+  renderedActivity["class"] = "animate-[spin_3s_linear_infinite]";
+  renderedActivity["color"] = "text-green-10";
+} else if (presence.coding) {
+  renderedActivity["text"] = presence.coding.state
+    ? presence.coding.state
+    : presence.coding.details;
+  renderedActivity["icon"] = "tabler:brand-vscode";
+  renderedActivity["color"] = "text-blue-11";
+} else {
+  renderedActivity["text"] = "<3";
+  renderedActivity["color"] = "text-red-10";
+}
+---
+
+<span class={`${renderedActivity.color} flex items-center gap-1`}>
+  {
+    renderedActivity.icon && (
+      <Icon
+        name={renderedActivity.icon}
+        size={20}
+        class={renderedActivity.class}
+      />
+    )
+  }
+  {renderedActivity.text && <span class="">{renderedActivity.text}</span>}
+</span>
