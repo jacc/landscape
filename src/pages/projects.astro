@@ -1,7 +1,161 @@
 ---
+import { Image } from "astro:assets";
+import ProjectCard from "../components/ProjectCard.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Projects" subtitle="Some things I've worked on.">
-  <h1>Hello world!</h1>
+  <div class="mt-6 grid grid-cols-4 gap-4 md:gap-8">
+    {/* Intro + Spotify */}
+    <div class="col-span-4 md:col-span-2">
+      <ProjectCard
+        title="stardew.app"
+        icon={"tabler:flower"}
+        href="https://github.com/communitycenter/stardew.app"
+        hrefText="GitHub"
+        iconBrands={[
+          "tabler:brand-nextjs",
+          "tabler:brand-tailwind",
+          "tabler:brand-planetscale",
+          "tabler:brand-typescript",
+          "tabler:brand-discord",
+          "tabler:brand-python",
+        ]}
+      >
+        <p>
+          Interactive, web-based planning tool designed for the popular game,
+          Stardew Valley. Parses a user&apos;s save file and saves in a MySQL
+          database. Uses Next.js, Tailwind and TypeScript, with Discord OAuth2
+          for authentication.
+        </p>
+        <div
+          class="lg:p-4 lg:mt-0 mt-2 duration-500 transition-transform lg:hover:scale-105"
+        >
+          <Image
+            src="/sdvapp.png"
+            alt="stardew.app"
+            width={1920}
+            height={1080}
+            class="rounded-md"
+          />
+        </div>
+      </ProjectCard>
+    </div>
+    <div class="col-span-4 md:col-span-2">
+      <ProjectCard
+        title="stardew.me"
+        icon={"tabler:flower"}
+        href="https://github.com/communitycenter/stardew.me"
+        hrefText="GitHub"
+        iconBrands={[
+          "tabler:brand-nextjs",
+          "tabler:brand-tailwind",
+          "tabler:brand-cloudflare",
+          "tabler:brand-python",
+        ]}
+      >
+        <p>
+          Stardew Valley image generator. Parses the user&apos;s save file for
+          character information and passes it to a RESTful Python API using
+          Pillow to generate a sprite in high quality, then uploads it to a
+          Cloudflare R2 bucket.
+        </p>
+        <div
+          class="lg:p-4 lg:mt-0 mt-2 duration-500 transition-transform lg:hover:scale-105"
+        >
+          <Image
+            src="/sdvme.png"
+            alt="stardew.me"
+            width={1920}
+            height={1080}
+            class="rounded-md"
+          />
+        </div>
+      </ProjectCard>
+    </div>
+
+    <div class="col-span-4 md:col-span-1">
+      <ProjectCard
+        title="whoopkit"
+        icon={"tabler:sdk"}
+        href="https://github.com/jacc/whoopkit"
+        hrefText="GitHub"
+        iconBrands={["tabler:brand-typescript"]}
+      >
+        <p>
+          whoopkit is a WIP TypeScript SDK for Whoop&apos;s internal app API,
+          allowing users to harness their data fully.
+        </p>
+      </ProjectCard>
+    </div>
+    <div class="col-span-4 md:col-span-1">
+      <ProjectCard
+        title="stats360.co"
+        icon={"tabler:car"}
+        href="https://stats360.co"
+        hrefText="Website"
+        iconBrands={[
+          "tabler:brand-tiktok",
+          "tabler:brand-typescript",
+          "tabler:api-app",
+        ]}
+      >
+        <p>
+          stats360.co is a website that went viral on TikTok
+          <span
+            class="text-gray-10 [&>*]:transition-colors [&>*]:duration-300 [&>*]:ease-in-out dark:hover:[&>*]:text-gray-12 hover:[&>*]:text-blue-10"
+          >
+            <sup>
+              <a
+                href="https://www.tiktok.com/@verboseboot/video/7073848276545555755"
+              >
+                1
+              </a>
+            </sup>{" "}
+            <sup>
+              <a
+                href="https://www.tiktok.com/@verboseboot/video/7075768406833777963"
+              >
+                2
+              </a>
+            </sup>
+          </span>
+           , allowing users to see their Life360 circles on the web.
+        </p>
+      </ProjectCard>
+    </div>
+    <div class="col-span-4 md:col-span-1">
+      <ProjectCard
+        title="music-box"
+        icon={"tabler:trophy"}
+        href="https://github.blog/2019-09-03-pins-to-win-stunning-student-profiles/#smart-profiles-with-github-apis"
+        hrefText="GitHub Blog"
+        iconBrands={["tabler:brand-javascript", "tabler:brand-lastfm"]}
+      >
+        <p>
+          music-box is a GitHub Action that automatically updates a user&apos;s
+          Gist with their Last.fm statistics.
+        </p>
+      </ProjectCard>
+    </div>
+
+    <div class="col-span-4 md:col-span-1">
+      <ProjectCard
+        title="StreamTicker"
+        icon={"tabler:grave-2"}
+        href="https://github.com/streamticker/streamticker"
+        hrefText="GitHub"
+        iconBrands={[
+          "tabler:brand-discord",
+          "tabler:brand-typescript",
+          "tabler:api-app",
+        ]}
+      >
+        <p>
+          StreamTicker was a Discord bot used by 7,000+ guilds to display
+          user&apos;s social media statistics in their Discord server.
+        </p>
+      </ProjectCard>
+    </div>
+  </div>
 </Layout>

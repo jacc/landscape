@@ -1,0 +1,42 @@
+---
+import Icon from "astro-iconify";
+
+interface Props {
+  title: string;
+  icon: string;
+  href: string;
+  hrefText: string;
+  iconBrands?: string[];
+}
+
+const { title, icon, href, hrefText, iconBrands } = Astro.props;
+---
+
+<div
+  class="w-full h-full flex flex-col p-3 dark:bg-gray-2 border dark:border-gray-5 rounded-xl"
+>
+  <div class="text-sm flex items-center justify-between gap-1 p-2 text-gray-12">
+    <div class="flex gap-1">
+      <Icon name={icon} size={20} />
+      {title}
+    </div>
+    <a href={href}>
+      <div
+        class="flex gap-1 hover:cursor-pointer dark:hover:text-gray-12 hover:text-blue-10 text-gray-11 transition-colors duration-300 ease-in-out"
+      >
+        {hrefText}
+        <Icon name={"tabler:arrow-up-right"} size={20} />
+      </div>
+    </a>
+  </div>
+
+  <div class="p-2 text-gray-11 flex-grow"><slot /></div>
+  <div
+    class="flex gap-1 pt-1 pb-1 pl-2 text-gray-10 [&>*]:transition-colors [&>*]:duration-300 [&>*]:ease-in-out dark:hover:[&>*]:text-gray-12 hover:[&>*]:text-blue-10"
+  >
+    {
+      iconBrands &&
+        iconBrands.map((icon: string) => <Icon name={icon} size={20} />)
+    }
+  </div>
+</div>
