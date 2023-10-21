@@ -1,9 +1,17 @@
 ---
-export const prerender = false;
+export const prerender = true;
 
 import Card from "../components/Card.astro";
 import Layout from "../layouts/Layout.astro";
 import type { AlbumData } from "../types/api";
+
+const timeline = [
+  { company: "Retro", role: "Marketing Intern", date: "Current" },
+  { company: "Whop", role: "Developer Relations", date: "2023" },
+  { company: "Basic.Space", role: "Community", date: "2021-2022" },
+  { company: "OpenSea", role: "Community Manager", date: "2021" },
+  { company: "Reincubate", role: "QA/Test Engineer", date: "2020" },
+];
 
 const albums = await fetch("https://jacklink.fly.dev/music/albums");
 const albumsData = (await albums.json()) as AlbumData;
@@ -80,6 +88,47 @@ const albumsData = (await albums.json()) as AlbumData;
         <div>prioject</div>
         <div>prioject</div>
       </Card>
+    </div>
+  </div>
+  <div class="mt-6 grid grid-cols-4 gap-4 md:gap-8">
+    <div class="col-span-4 md:col-span-2">
+      <Card title="Experience" titleIcon={"tabler:3d-cube-sphere"}>
+        <div
+          class="flex flex-col gap-y-4 justify-around relative overflow-hidden"
+        >
+          <div
+            class="absolute top-3 left-[7px] h-full w-[2px] bg-gradient-to-b from-gray-6 to-gray-6/10 z-0"
+          >
+          </div>
+          {
+            timeline.map((item, i) => (
+              <div class="flex items-center space-x-4 relative z-10">
+                <div
+                  class={`w-4 h-4 rounded-full flex items-center justify-center ${
+                    item.date === "Current" ? "bg-green-11/70" : "bg-gray-11/70"
+                  }`}
+                >
+                  <div
+                    class={`w-3 h-3 animate rounded-full ${
+                      item.date === "Current"
+                        ? "bg-green-11 animate-pulse"
+                        : "bg-gray-11"
+                    }`}
+                  />
+                </div>
+                <div>
+                  <p class="font-medium text-sm text-gray-12">{item.company}</p>
+                  <p class="text-sm text-gray-10">
+                    {item.role}
+                    {item.date ? ` • ${item.date}` : ""}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </Card>
+      <div class="col-span-4 md:col-span-2"></div>
     </div>
   </div>
 </Layout>
