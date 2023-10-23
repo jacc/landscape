@@ -4,7 +4,6 @@ import type { StreamingData } from "../types/api";
 
 interface Props {
   streaming: StreamingData;
-  presence: any;
 }
 
 interface RenderedActivity {
@@ -14,7 +13,7 @@ interface RenderedActivity {
   class?: string;
 }
 
-const { streaming, presence } = Astro.props;
+const { streaming } = Astro.props;
 
 function getStreamingActivity(streamingData: StreamingData): RenderedActivity {
   return {
