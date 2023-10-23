@@ -27,15 +27,15 @@ function getStreamingActivity(streamingData: StreamingData): RenderedActivity {
   };
 }
 
-function getCodingActivity(presenceData: any): RenderedActivity {
-  return {
-    text: presenceData.coding.state
-      ? presenceData.coding.state
-      : presenceData.coding.details,
-    icon: "tabler:brand-vscode",
-    color: "text-blue-11",
-  };
-}
+// function getCodingActivity(presenceData: any): RenderedActivity {
+//   return {
+//     text: presenceData.coding.state
+//       ? presenceData.coding.state
+//       : presenceData.Card,
+//     icon: "tabler:brand-vscode",
+//     color: "text-blue-11",
+//   };
+// }
 
 function getDefaultActivity(): RenderedActivity {
   return {
@@ -46,8 +46,6 @@ function getDefaultActivity(): RenderedActivity {
 
 const renderedActivity: RenderedActivity = streaming.streaming
   ? getStreamingActivity(streaming)
-  : presence.coding
-  ? getCodingActivity(presence)
   : getDefaultActivity();
 ---
 
