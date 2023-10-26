@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import Card from "../../components/Card.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const posts = await getCollection("blog");
+console.log(posts);
+---
+
+<Layout title="Words" subtitle="Watch me unprofessionally ramble here.">
+  <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8">
+    {
+      posts
+        .sort((a: any, b: any) => b.data.date.getTime() - a.data.date.getTime())
+        .map((post) => {
+          return (
+            <a href={`/words/${post.slug}`}>
+              <Card title={post.data.title} subtitle={post.data.date}>
+                {post.data.description}
+              </Card>
+            </a>
+          );
+        })
+    }
+  </div>
+</Layout>

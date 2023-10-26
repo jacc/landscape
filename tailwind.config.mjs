@@ -15,5 +15,5 @@ export default {
       },
     },
   },
-  plugins: [colors.plugin],
+  plugins: [colors.plugin, require("@tailwindcss/typography")],
 };

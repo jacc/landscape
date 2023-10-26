@@ -31,21 +31,31 @@ const Footer: React.FC = () => {
     streaming: null,
   });
 
+  const [presenceData, setPresenceData] = useState<any>({
+    presence: null,
+  });
+
   useEffect(() => {
     const fetchStreamingData = async () => {
       const response = await fetch("https://jacklink.fly.dev/music/streaming");
       const data = (await response.json()) as StreamingData;
-      console.log(data);
       setStreamingData(data);
     };
 
+    const fetchPresenceData = async () => {
+      const response = await fetch("https://jacklink.fly.dev/fun/discord");
+      const data = (await response.json()) as any;
+      setPresenceData(data);
+    };
+
     fetchStreamingData();
+    fetchPresenceData();
   }, []);
 
   return (
     <footer className="absolute bottom-0 w-full border-t md:flex grid justify-center md:justify-between p-4 xl:pr-[7rem] xl:pl-[7rem]">
       <div className="flex justify-center md:justify-start">
-        <FooterActivity streaming={streamingData} />
+        <FooterActivity streaming={streamingData} presence={presenceData} />
       </div>
       <div className="flex gap-3 justify-center md:justify-end">
         {socials.map((social) => (

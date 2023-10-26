@@ -1,9 +1,10 @@
-import { IconDisc } from "@tabler/icons-react";
+import { IconBrandVscode, IconDisc } from "@tabler/icons-react";
 import React from "react";
 import type { StreamingData } from "../types/api";
 
 interface Props {
   streaming: StreamingData;
+  presence: any;
 }
 
 interface RenderedActivity {
@@ -13,7 +14,7 @@ interface RenderedActivity {
   class?: string;
 }
 
-const FooterActivity: React.FC<Props> = ({ streaming }) => {
+const FooterActivity: React.FC<Props> = ({ streaming, presence }) => {
   const getStreamingActivity = (
     streamingData: StreamingData,
   ): RenderedActivity => {
@@ -28,23 +29,25 @@ const FooterActivity: React.FC<Props> = ({ streaming }) => {
   };
 
   // Uncomment if you need this function in the future
-  // const getCodingActivity = (presenceData: any): RenderedActivity => {
-  //   return {
-  //     text: presenceData.coding.state ? presenceData.coding.state : presenceData.Card,
-  //     icon: "tabler:brand-vscode",
-  //     color: "text-blue-11",
-  //   };
-  // };
+  const getCodingActivity = (presenceData: any): RenderedActivity => {
+    return {
+      text: presenceData.coding.state ? presenceData.coding.state : "",
+      icon: IconBrandVscode,
+      color: "text-blue-11",
+    };
+  };
 
   const getDefaultActivity = (): RenderedActivity => {
     return {
-      text: "<3",
-      color: "text-red-10",
+      color: "",
+      text: "",
     };
   };
 
   const renderedActivity: RenderedActivity = streaming.streaming
     ? getStreamingActivity(streaming)
+    : presence.coding
+    ? getCodingActivity(presence)
     : getDefaultActivity();
 
   return (

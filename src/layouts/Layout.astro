@@ -43,7 +43,7 @@ const { title, subtitle } = Astro.props;
         </div>
         <slot />
       </main>
-      <Footer client:load />
+      <Footer client:idle />
     </div>
   </body>
 </html>
