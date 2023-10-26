@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
           <a
             key={social.name}
             href={social.href}
-            className="flex gap-2 text-gray-10 hover:text-gray-12 transition-colors duration-200"
+            className="flex gap-2 text-gray-10 transition-colors duration-300 ease-in-out dark:hover:text-gray-12 hover:text-blue-10"
           >
             {social.name}
           </a>
