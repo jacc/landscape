@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className="absolute bottom-0 w-full border-t md:flex grid justify-center md:justify-between p-4 xl:pr-[7rem] xl:pl-[7rem]">
+    <footer className="absolute bottom-0 w-full border-t md:flex dark:border-gray-5 grid justify-center md:justify-between p-4 xl:pr-[7rem] xl:pl-[7rem]">
       <div className="flex justify-center md:justify-start">
         <FooterActivity streaming={streamingData} presence={presenceData} />
       </div>
